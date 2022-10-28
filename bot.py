@@ -208,12 +208,12 @@ def auto_shutdown(context: CallbackContext):
     matched = re.search(r'\d+', online) 
     current_online = int(matched.group(0))
 
-    if current_online > 0:
-        # someboy is playing, reset count.
-        death_count = 0
-    else:
+    if current_online == 0:
         # nobody playing.
         death_count += 1
+    else:
+        # someboy is playing, reset count.
+        death_count = 0
 
     if death_count >= 60:
         death_count = 0 # reset count.
